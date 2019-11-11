@@ -14,8 +14,9 @@
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  example-package = pkgs.callPackage ./pkgs/example-package { };
-  gridcoin-research = pkgs.callPackage ./pkgs/gridcoin-research { };
+  # example-package = pkgs.callPackage ./pkgs/example-package { };
+  # gridcoin-research = pkgs.callPackage ./pkgs/gridcoin-research { };
+  pyscroll = pkgs.callPackage ./pkgs/pyscroll.nix {};
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
