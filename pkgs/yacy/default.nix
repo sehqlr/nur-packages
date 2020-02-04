@@ -11,7 +11,8 @@ stdenv.mkDerivation rec {
     sha256 = "0jbb1w13msngkp21s0wv7wagp7q1xmicv7f8n09hbf2pihyb64hw";
   };
 
-  nativeBuildInputs = [jdk ant];
+  buildInputs = [ jdk ];
+  nativeBuildInputs = [ ant ];
   buildPhase = ''
     ant clean all dist
   '';
