@@ -1,6 +1,6 @@
 { stdenv, autoreconfHook, pkgconfig, libressl, boost, libevent , db48 }:
 stdenv.mkDerivation rec {
-  name = "gridcoin-research-base";
+  name = "gridcoin-research";
   nativeBuildInputs = [ pkgconfig autoreconfHook ];
   buildInputs = [ boost db48 libevent libressl ];
   configFlags = [ "--without-gui" "--without-miniupnpc" ];
