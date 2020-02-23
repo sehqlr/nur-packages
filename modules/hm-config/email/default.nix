@@ -51,18 +51,6 @@
 
       programs.afew = {
         enable = true;
-        extraConfig = ''
-          [SpamFilter]
-          [ListMailsFilter]
-          [ArchiveSentMailsFilter]
-          [MeFilter]
-          [KillThreadsFilter]
-          ${(import /home/sam/secrets.nix/afew/filters.nix)}
-          [LobstersFilter]
-          [InboxFilter]
-
-          ${(import /home/sam/secrets.nix/afew/mailmover.nix)}
-        '';
       };
 
       programs.astroid = {

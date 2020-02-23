@@ -1,11 +1,12 @@
 { config, lib, pkgs, ... }:
 {
-home.programs = with pkgs; [ stack nixops vagrant ];
+  imports = [ ./git.nix ];
+  home.packages = with pkgs; [ stack nixops vagrant ];
 
-programs.direnv.enable = true;
-programs.direnv.enableZshIntegration = true;
+  programs.direnv.enable = true;
+  programs.direnv.enableZshIntegration = true;
 
-programs.jq.enable = true;
+  programs.jq.enable = true;
 
   programs.emacs.enable = true;
   services.emacs.enable = true;
@@ -19,6 +20,6 @@ programs.jq.enable = true;
   };
   services.lorri.enable = true;
 
-home.file.".stack/config.yaml".source =
-      ./stack-config.yaml;
+  home.file.".stack/config.yaml".source =
+    ./stack-config.yaml;
 }
