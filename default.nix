@@ -15,8 +15,6 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   # example-package = pkgs.callPackage ./pkgs/example-package { };
-  gridcoin-research = pkgs.callPackage ./pkgs/gridcoin-research { };
-
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
