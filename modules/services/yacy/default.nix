@@ -12,7 +12,7 @@ let cfg = config.services.yacy;
       description = "YaCy search engine user";
       group = "yacy";
       home = "/var/lib/yacy";
-      packages = [ pkgs.jd8 ];
+      packages = [ pkgs.jdk ];
     };
   };
 }
