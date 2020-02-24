@@ -3,8 +3,11 @@
   imports = [ ./desktop ./headless ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  nix.gc.automatic = true;
+
+  networking.networkmanager.enable = true;
   services.ipfs.enable = true;
+
+  nix.gc.automatic = true;
   system.autoUpgrade.enable = true;
   system.copySystemConfiguration = true;
 
