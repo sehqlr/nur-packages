@@ -28,16 +28,13 @@
           "github" = {
             host = "github.com";
             user = "git";
-            identityFile = "~/.ssh/github_temp";
           };
           "gitlab" = {
             host = "gitlab.com";
             user = "git";
-            identityFile = "~/.ssh/gitlab";
           };
           "sr.ht" = {
             host = "*sr.ht";
-            identityFile = "~/.ssh/sr.ht";
           };
           "bytes.zone" = {
             host = "git.bytes.zone";
