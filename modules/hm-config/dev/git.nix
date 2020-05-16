@@ -39,6 +39,7 @@
           "bytes.zone" = {
             host = "git.bytes.zone";
             user = "git";
+            port = 2222;
           };
         };
       };
