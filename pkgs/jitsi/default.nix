@@ -9,7 +9,8 @@ stdenv.mkDerivation rec {
         rev = "4169";
         sha256 = "0qglayb1wb8sp7dffgdm0l740bcymsllsbcb7n5nk6409b9bv5dl";
   };
-  buildPhase = "npm i && make";
-  buildInputs = [ pkgs.jre pkgs.nodejs ];
+  
+  buildPhase = "node2nix && make";
+  buildInputs = [ pkgs.jre pkgs.nodejs pkgs.nodePackages.node2nix ];
 }
 
