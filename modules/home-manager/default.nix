@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   accounts.email.accounts.fastmail.address = "hey@samhatfield.me";
-  accounts.email.accounts.fastmail.imap.host = "imaphttps://github.com/.fastmail.com";
+  accounts.email.accounts.fastmail.imap.host = "imap.fastmail.com";
   accounts.email.accounts.fastmail.passwordCommand =
     "pass email/fastmail.com/home-manager";
   accounts.email.accounts.fastmail.primary = true;
