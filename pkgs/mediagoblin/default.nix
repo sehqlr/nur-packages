@@ -1,17 +1,25 @@
-{ stdenv }:
+{ autoreconfHook, git, nodejs, python3Packages, stdenv }:
 
 stdenv.mkDerivation rec {
   name = "mediagoblin-${version}";
   version = "stable";
+
   src = fetchGit {
     url = "https://git.savannah.gnu.org/git/mediagoblin.git";
     rev = "9308959be28da444e6875691fef14a635b79339d";
   };
-  buildPhase = ''
-    cd $src
-    ./bootstrap.sh
-  '';
-  installPhase = "install -Dm755 example $out";
+
+  buildInputs = [
+    autoreconfHook
+    git
+    nodejs
+    python3Packages.python
+    python3Packages.gst-python
+    python3Packages.lxml
+    python3Packages.pillow
+    python3Packages.virtualenv
+  ];
+
   meta = with stdenv.lib; {
     description =
       "MediaGoblin is a free software media publishing platform that anyone can run.";
@@ -24,7 +32,7 @@ stdenv.mkDerivation rec {
     license = licenses.gpl3Plus;
     maintainers = [ maintainers.sehqlr ];
     platforms = platforms.linux;
-    broken = true;
+    # broken = true;
   };
 }
 
