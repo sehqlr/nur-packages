@@ -1,13 +1,6 @@
-let
-  hm-secrets = builtins.fetchGit {
-    url = "ssh://git@git.bytes.zone:2222/sehqlr/hm-secrets.nix.git";
-    ref = "main";
-  };
-in { config, pkgs, ... }: {
-  imports = [ (import hm-secrets) ];
-
+{ config, pkgs, ... }: {
   accounts.email.accounts.fastmail.address = "hey@samhatfield.me";
-  accounts.email.accounts.fastmail.imap.host = "imap.fastmail.com";
+  accounts.email.accounts.fastmail.imap.host = "imaphttps://github.com/.fastmail.com";
   accounts.email.accounts.fastmail.passwordCommand =
     "pass email/fastmail.com/home-manager";
   accounts.email.accounts.fastmail.primary = true;
