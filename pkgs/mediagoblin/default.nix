@@ -1,23 +1,27 @@
-{ autoreconfHook, git, nodejs, python3Packages, stdenv }:
+{ autoreconfHook, fetchgit, nodejs, python3Packages, stdenv }:
+with python3Packages;
 
 stdenv.mkDerivation rec {
   name = "mediagoblin-${version}";
   version = "stable";
 
-  src = fetchGit {
+  src = fetchgit {
     url = "https://git.savannah.gnu.org/git/mediagoblin.git";
-    rev = "9308959be28da444e6875691fef14a635b79339d";
+    rev = "stable";
+    sha256 = "1qbkayx3l9z6mwmgjli4rgkl369m2pzfq0wnv31l57302b05ni6f";
+    fetchSubmodules = true;
   };
 
   buildInputs = [
     autoreconfHook
-    git
     nodejs
-    python3Packages.python
-    python3Packages.gst-python
-    python3Packages.lxml
-    python3Packages.pillow
-    python3Packages.virtualenv
+
+    python
+    exifread
+    gst-python
+    lxml
+    pillow
+    virtualenv
   ];
 
   meta = with stdenv.lib; {
