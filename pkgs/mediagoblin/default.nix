@@ -1,7 +1,42 @@
-{ autoreconfHook, fetchgit, nodejs, python3Packages, stdenv }:
-with python3Packages;
-
-stdenv.mkDerivation rec {
+{ autoreconfHook, fetchgit, nodejs, python3, stdenv }:
+let
+  my-python-packages = python-packages: with python-packages; [
+    alembic
+    Babel
+    bcrypt
+    celery
+    certifi
+    configobj
+    dateutil
+    email_validator
+    exifread
+    gst-python
+    itsdangerous
+    jinja2
+    jsonschema
+    lxml
+    markdown
+    oauthlib
+    PasteDeploy
+    pasteScript
+    pillow
+    PyLD
+    pytest
+    pytest_xdist
+    pytz
+    requests
+    six
+    sphinx
+    sqlalchemy
+    unidecode
+    virtualenv
+    waitress
+    webtest
+    werkzeug
+    wtforms
+  ];
+  python-with-my-packages = python3.withPackages my-python-packages;
+in stdenv.mkDerivation rec {
   name = "mediagoblin-${version}";
   version = "stable";
 
@@ -16,19 +51,16 @@ stdenv.mkDerivation rec {
     autoreconfHook
     nodejs
 
-    python
-    exifread
-    gst-python
-    lxml
-    pillow
-    virtualenv
+    python-with-my-packages
   ];
 
   meta = with stdenv.lib; {
     description =
       "MediaGoblin is a free software media publishing platform that anyone can run.";
     longDescription = ''
-      MediaGoblin is a free software media publishing platform that anyone can run. You can think of it as a decentralized alternative to Flickr, YouTube, SoundCloud, etc.
+      MediaGoblin is a free software media publishing platform that
+      anyone can run. You can think of it as a decentralized alternative
+      to Flickr, YouTube, SoundCloud, etc.
     '';
     homepage = "https://mediagoblin.org";
     changelog =
@@ -36,7 +68,7 @@ stdenv.mkDerivation rec {
     license = licenses.gpl3Plus;
     maintainers = [ maintainers.sehqlr ];
     platforms = platforms.linux;
-    # broken = true;
+    broken = true;
   };
 }
 
