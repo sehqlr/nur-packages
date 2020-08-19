@@ -1,4 +1,4 @@
-{ autoreconfHook, fetchgit, nodejs, python3, stdenv }:
+{ autoreconfHook, fetchgit, python37, stdenv }:
 let
   my-python-packages = python-packages: with python-packages; [
     alembic
@@ -28,6 +28,7 @@ let
     six
     sphinx
     sqlalchemy
+    TurboCheetah
     unidecode
     virtualenv
     waitress
@@ -35,22 +36,20 @@ let
     werkzeug
     wtforms
   ];
-  python-with-my-packages = python3.withPackages my-python-packages;
+  python-with-my-packages = python37.withPackages my-python-packages;
 in stdenv.mkDerivation rec {
   name = "mediagoblin-${version}";
-  version = "stable";
+  version = "v0.10.0";
 
   src = fetchgit {
     url = "https://git.savannah.gnu.org/git/mediagoblin.git";
-    rev = "stable";
-    sha256 = "1qbkayx3l9z6mwmgjli4rgkl369m2pzfq0wnv31l57302b05ni6f";
+    rev = "${version}";
+    sha256 = "13s66snz9710xr7s2icnmmqb4756fq369gn0qa6cwja4xr25sjd4";
     fetchSubmodules = true;
   };
 
   buildInputs = [
     autoreconfHook
-    nodejs
-
     python-with-my-packages
   ];
 
@@ -68,7 +67,7 @@ in stdenv.mkDerivation rec {
     license = licenses.gpl3Plus;
     maintainers = [ maintainers.sehqlr ];
     platforms = platforms.linux;
-    broken = true;
+    # broken = true;
   };
 }
 
