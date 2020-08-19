@@ -3,6 +3,7 @@
   environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs; [
     android-file-transfer
+    commonsCompress
     gimp
     inkscape
     libreoffice

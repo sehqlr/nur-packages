@@ -300,7 +300,7 @@
   services.flameshot.enable = true;
   services.gpg-agent.enableSshSupport = true;
   services.gpg-agent.enable = true;
-  services.gpg-agent.sshKeys = [ "3759E9087871E845B0621E00F6BE8F0DE65D9666" ];
+  services.gpg-agent.sshKeys = [ "87F5686AC11C5D0AE1C7D66B7AE4D820B34CF744" ];
   services.lorri.enable = true;
   xdg.configFile."afew/lobsters.py".source = ./lobsters.py;
   xsession.windowManager.xmonad.config = ./xmonad.hs;
