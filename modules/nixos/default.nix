@@ -14,12 +14,11 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
   nix.gc.automatic = true;
+  programs.sway.enable = true;
   services.flatpak.enable = true;
   services.ipfs.enable = true;
   services.xserver.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.displayManager.defaultSession = "none+xmonad";
-  services.xserver.windowManager.xmonad.enable = true;
   system.autoUpgrade.enable = true;
   system.copySystemConfiguration = true;
   users.users.guest.isNormalUser = true;

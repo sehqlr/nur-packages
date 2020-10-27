@@ -12,7 +12,6 @@
   accounts.email.accounts.fastmail.mbsync.create = "both";
   home.file.".mailcap".text =
     "text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput";
-  home.file.".xmobarrc".source = ./xmobarrc.hs;
   home.packages = with pkgs; [
     file
     gpa
@@ -39,8 +38,6 @@
   programs.command-not-found.enable = true;
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;
-  programs.emacs.enable = true;
-  programs.feh.enable = true;
   programs.firefox.enable = true;
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
@@ -88,10 +85,6 @@
   programs.notmuch.hooks.preNew = "mbsync -a";
   programs.notmuch.new.tags = [ "new" ];
   programs.password-store.enable = true;
-  programs.rofi.enable = true;
-  programs.rofi.package =
-    pkgs.rofi.override { plugins = with pkgs; [ rofi-emoji rofi-pass ]; };
-  programs.rofi.theme = "lb"; # rofi-theme-selector
   programs.ssh.enable = true;
   programs.ssh.matchBlocks."bytes.zone".host = "git.bytes.zone";
   programs.ssh.matchBlocks."bytes.zone".port = 2222;
@@ -108,6 +101,8 @@
   programs.termite.enable = true;
   programs.tmux.enable = true;
   programs.tmux.clock24 = true;
+  programs.waybar.enable = true;
+  programs.waybar.systemd.enable = true;
   programs.zathura.enable = true;
   programs.zsh.enableCompletion = true;
   programs.zsh.enable = true;
@@ -116,17 +111,16 @@
     [ "copyfile" "extract" "httpie" "pass" "sudo" "systemd" ];
   programs.zsh.oh-my-zsh.theme = "af-magic";
   programs.zsh.shellAliases.nixos = "sudo nixos-rebuild";
-  services.emacs.enable = true;
-  services.flameshot.enable = true;
+  services.kanshi.enable = true;
   services.gpg-agent.enableSshSupport = true;
   services.gpg-agent.enable = true;
   services.gpg-agent.sshKeys = [ "87F5686AC11C5D0AE1C7D66B7AE4D820B34CF744" ];
   services.lorri.enable = true;
   services.network-manager-applet.enable = true;
-  services.stalonetray.enable = true;
+  wayland.windowManager.sway.config.bars = [{command = "${pkgs.waybar}/bin/waybar";}];
+  wayland.windowManager.sway.config.modifier = "Mod4";
+  wayland.windowManager.sway.config.terminal = "${pkgs.termite}/bin/termite";
+  wayland.windowManager.sway.enable = true;
   xdg.configFile."afew/lobsters.py".source = ./lobsters.py;
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
-  xsession.windowManager.xmonad.config = ./xmonad.hs;
-  xsession.windowManager.xmonad.enable = true;
-  xsession.windowManager.xmonad.enableContribAndExtras = true;
 }
