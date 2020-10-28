@@ -23,7 +23,6 @@
     ripgrep
     w3m
     xclip
-    xmobar
   ];
   nixpkgs.config = import ./nixpkgs-config.nix;
   programs.afew.enable = true;
@@ -39,6 +38,7 @@
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;
   programs.firefox.enable = true;
+  programs.firefox.package = pkgs.firefox-wayland;
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
   programs.git.aliases.graph = "log --graph --oneline --decorate";
@@ -102,6 +102,11 @@
   programs.tmux.enable = true;
   programs.tmux.clock24 = true;
   programs.waybar.enable = true;
+  programs.waybar.settings = [{
+      modules-left = [ "sway/workspaces" ];
+      modules-center = [ "sway/window" "clock" ];
+      modules-right = [ "pulseaudio" "network" "cpu" "memory" "battery" ];
+  }];
   programs.waybar.systemd.enable = true;
   programs.zathura.enable = true;
   programs.zsh.enableCompletion = true;
@@ -116,7 +121,6 @@
   services.gpg-agent.enable = true;
   services.gpg-agent.sshKeys = [ "87F5686AC11C5D0AE1C7D66B7AE4D820B34CF744" ];
   services.lorri.enable = true;
-  services.network-manager-applet.enable = true;
   wayland.windowManager.sway.config.bars = [{command = "${pkgs.waybar}/bin/waybar";}];
   wayland.windowManager.sway.config.modifier = "Mod4";
   wayland.windowManager.sway.config.terminal = "${pkgs.termite}/bin/termite";
