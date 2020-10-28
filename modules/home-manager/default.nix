@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
   accounts.email.accounts.fastmail.address = "hey@samhatfield.me";
   accounts.email.accounts.fastmail.imap.host = "imap.fastmail.com";
   accounts.email.accounts.fastmail.passwordCommand = "pass fastmail";
@@ -22,6 +22,7 @@
     python37Packages.editorconfig
     ripgrep
     w3m
+    wofi
     xclip
   ];
   nixpkgs.config = import ./nixpkgs-config.nix;
@@ -99,14 +100,30 @@
   programs.starship.settings.add_newline = false;
   programs.starship.settings.character.symbol = "λ";
   programs.termite.enable = true;
-  programs.tmux.enable = true;
   programs.tmux.clock24 = true;
+  programs.tmux.extraConfig = ''
+    set -g mouse on
+  '';
+  programs.tmux.enable = true;
+  programs.tmux.terminal = "xterm-termite";
+  programs.tmux.shortcut = "a";
   programs.waybar.enable = true;
-  programs.waybar.settings = [{
+  programs.waybar.settings = [
+    {
+      layer = "top";
+      position = "top";
       modules-left = [ "sway/workspaces" ];
-      modules-center = [ "sway/window" "clock" ];
-      modules-right = [ "pulseaudio" "network" "cpu" "memory" "battery" ];
-  }];
+      modules-center = [ "clock" ];
+      modules-right = [ "tray" ];
+    }
+    {
+      layer = "top";
+      position = "bottom";
+      modules-left = [ "sway/window" ];
+      modules-center = [];
+      modules-right = [ "network" "cpu" "memory" "battery" ];
+    }
+  ];
   programs.waybar.systemd.enable = true;
   programs.zathura.enable = true;
   programs.zsh.enableCompletion = true;
@@ -121,7 +138,16 @@
   services.gpg-agent.enable = true;
   services.gpg-agent.sshKeys = [ "87F5686AC11C5D0AE1C7D66B7AE4D820B34CF744" ];
   services.lorri.enable = true;
-  wayland.windowManager.sway.config.bars = [{command = "${pkgs.waybar}/bin/waybar";}];
+  wayland.windowManager.sway.config.bars =
+    [{ command = "${pkgs.waybar}/bin/waybar"; }];
+  wayland.windowManager.sway.config.input."type:touchpad".tap = "enabled";
+  wayland.windowManager.sway.config.keybindings =
+    let modifier = config.wayland.windowManager.sway.config.modifier;
+    in lib.mkOptionDefault {
+      "${modifier}+Return" = "exec ${pkgs.termite}/bin/termite -e tmux";
+      "${modifier}+p" =
+        "exec ${pkgs.wofi}/bin/wofi -S run,drun | ${pkgs.findutils}/bin/xargs swaymsg exec --";
+    };
   wayland.windowManager.sway.config.modifier = "Mod4";
   wayland.windowManager.sway.config.terminal = "${pkgs.termite}/bin/termite";
   wayland.windowManager.sway.enable = true;

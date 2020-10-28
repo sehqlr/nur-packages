@@ -23,7 +23,7 @@
   system.copySystemConfiguration = true;
   users.users.guest.isNormalUser = true;
   users.users.sam.description = "Sam Hatfield <hey@samhatfield.me>";
-  users.users.sam.extraGroups = [ "wheel" "networkmanager" ];
+  users.users.sam.extraGroups = [ "wheel" "networkmanager" "audio"];
   users.users.sam.isNormalUser = true;
   users.users.sam.shell = pkgs.zsh;
   xdg.portal.enable = true;
