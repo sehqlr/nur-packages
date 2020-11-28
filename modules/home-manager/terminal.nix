@@ -51,6 +51,11 @@
     shortcut = "a";
   };
 
+  programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
