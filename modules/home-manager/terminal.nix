@@ -4,11 +4,6 @@
 
   programs.bat.enable = true;
 
-  programs.broot = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   programs.command-not-found.enable = true;
 
   programs.fzf = {
@@ -52,8 +47,8 @@
   };
 
   programs.zoxide = {
-      enable = true;
-      enableZshIntegration = true;
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.zsh = {
