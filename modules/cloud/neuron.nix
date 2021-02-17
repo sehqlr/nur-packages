@@ -4,6 +4,8 @@ let
   notesDir = "/srv/git/zettelkasten";
   htmlDir = "/srv/neuron";
 in {
+    security.acme.certs."neuron.samhatfield.me".email = "hey@samhatfield.me";
+
     services.nginx.virtualHosts."neuron.samhatfield.me" = {
         addSSL = true;
         enableACME = true;
