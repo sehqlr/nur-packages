@@ -27,7 +27,7 @@ in {
     systemd.services.clone-zettelkasten = {
         description = "Clone sehqlr's zettelkasten";
         serviceConfig.Type = "oneshot";
-        serviceConfig.WorkingDirectory = notesDir;
+        serviceConfig.WorkingDirectory = "/srv/git";
         script = "${pkgs.git}/bin/git clone https://git.bytes.zone/sehqlr/zettelkasten";
     };
     systemd.services.sync-zettelkasten = {
@@ -38,7 +38,7 @@ in {
     };
     systemd.timers.sync-zettelkasten = {
         wantedBy = [ "timers.target" ];
-        partOf = [ "zettelkasten-sync.service" ];
+        partOf = [ "sync-zettelkasten.service" ];
         timerConfig.OnCalendar = "minutely";
     };
 }
