@@ -25,6 +25,7 @@
       "github" = {
         host = "github.com";
         user = "git";
+        identityFile = "~/.ssh/github";
       };
       "gitlab" = {
         host = "gitlab.com";
