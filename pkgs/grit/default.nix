@@ -1,17 +1,17 @@
-{ buildGoPackage, fetchFromGitHub, pkgs, lib }:
+{ buildGoModule, fetchFromGitHub, lib }:
 
-buildGoPackage rec {
+buildGoModule rec {
   pname = "grit";
   version = "0.3.0";
 
-  goPackagePath = "github.com/climech/grit";
-  
   src = fetchFromGitHub {
     owner = "climech";
     repo = "grit";
     rev = "v${version}";
     sha256 = "0sqfinl192bq81iqj7g93ip7ii64jcwyfjscx4nrp3n5cp103k3k";
   };
+
+  vendorSha256 = null;
   
   meta = with lib; {
     description = ''
@@ -19,5 +19,6 @@ buildGoPackage rec {
     '';
     homepage = "https://github.com/climech/grit";
     license = licenses.mit;
+    broken = true;
   };
 }
