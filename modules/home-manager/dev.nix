@@ -8,7 +8,7 @@
     httpie
     nixfmt
     nix-linter
-    nix-prefetch-script
+    nix-prefetch-scripts
     pandoc
     python37Packages.editorconfig
     ripgrep
