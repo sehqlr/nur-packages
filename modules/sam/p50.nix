@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
     
-  imports = [ ./wm.nix ];
+  imports = [ ./common.nix ./dev.nix ./taskwarrior.nix ];
   
   home.packages = with pkgs; [
     firefox-wayland
