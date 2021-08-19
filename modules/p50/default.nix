@@ -60,6 +60,7 @@
       };
     };
   };
+
   fonts.fontconfig.defaultFonts.monospace = [ "FiraCode Mono" ];
 
   hardware.pulseaudio.enable = true;
@@ -75,10 +76,6 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.steam.enable = true;
-
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   services.flatpak.enable = true;
 
@@ -112,6 +109,10 @@
     };
   };
 
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
   time.timeZone = "America/Chicago";
 
   users.users.sam = {
@@ -124,6 +125,4 @@
   virtualisation.podman.enable = true;
 
   xdg.portal.enable = true;
-
 }
-
