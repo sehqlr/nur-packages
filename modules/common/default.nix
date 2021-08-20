@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, home-manager, lib, pkgs, ... }: {
   boot.loader.systemd-boot.enable = true;
   environment = {
     systemPackages = with pkgs; [ commonsCompress ];
