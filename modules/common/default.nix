@@ -26,36 +26,6 @@
     enableGC = true;
   };
 
-  services.jupyterhub = {
-    enable = true;
-    kernels = {
-      nltk = let
-        env = (pkgs.python3.withPackages (pypkgs:
-          with pypkgs; [
-            ipykernel
-            nltk
-            matplotlib
-            numpy
-            beautifulsoup4
-          ]));
-      in {
-        displayName = "Python 3 for NLP";
-        argv = [
-          "${env.interpreter}"
-          "-m"
-          "ipykernel_launcher"
-          "-f"
-          "{connection_file}"
-        ];
-        language = "python";
-        logo32 =
-          "${env}/${env.sitePackages}/ipykernel/resources/logo-32x32.png";
-        logo64 =
-          "${env}/${env.sitePackages}/ipykernel/resources/logo-64x64.png";
-      };
-    };
-  };
-
   system.autoUpgrade.enable = true;
   system.copySystemConfiguration = true;
 
@@ -65,8 +35,4 @@
     isNormalUser = true;
     shell = pkgs.zsh;
   };
-
-  virtualisation.podman.enable = true;
-
-  xdg.portal.enable = true;
 }
